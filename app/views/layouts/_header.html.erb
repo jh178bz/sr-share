@@ -3,6 +3,14 @@
     <%= link_to "トップ", root_url %>
     <nav>
       <ul class="nav navbar-nav navbar-right">
+        <% if user_signed_in? %>
+         <%# userのマイページへのlink  %>
+         <li>
+           <%= link_to "ログアウト", destroy_user_session_path , method: :delete %>
+         </li>
+        <% else %>
+          <%= link_to "ログイン・新規登録", new_user_session_path %>
+        <% end %>
         <li><%= link_to "SR Shareとは？", about_path %></li>
       </ul>
     </nav>
