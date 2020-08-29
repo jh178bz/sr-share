@@ -1,2 +1,7 @@
-<% provide(:title, @user.name) %>
-<%= @user.name %>
+<% provide(:title, "マイページ") %>
+<h1>マイページ</h1>
+<div class="container">
+  <div class="media-body">
+    <%= @user.name %>
+  </div>
+</div>
