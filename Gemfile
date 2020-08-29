@@ -69,3 +69,4 @@ gem 'devise'
 gem 'bootstrap-sass'
 gem 'rails-i18n', '~> 5.1'
 gem "jquery-rails"
+gem 'faker'
