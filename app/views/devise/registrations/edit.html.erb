@@ -1,11 +1,11 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<h2>編集</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email",placeholder: "メールアドレス(必須)" %>
   </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -13,31 +13,42 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <br />
+    <%= f.password_field :password, autocomplete: "new-password", placeholder: "新しいパスワード" %>
     <% if @minimum_password_length %>
       <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
+      <em><%= @minimum_password_length %> 文字以上</em>
     <% end %>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "パスワード(確認)" %>
   </div>
 
   <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
+    <br />
+    <%= f.password_field :current_password, autocomplete: "current-password", placeholder: "現在のパスワード(必須)" %>
+  </div>
+
+  <div class="circle-image">
+    <% if current_user.persisted? && current_user.image? %>
+      <%= image_tag current_user.image.to_s %>
+      <label><%= f.check_box :remove_image %> 画像を削除</label>
+    <% else %>
+      <%= image_tag '/images/default_user.png' %>
+      <%= f.hidden_field :image_cache %>
+    <% end %>
+      <%= f.file_field :image %>
   </div>
 
   <div class="actions">
-    <%= f.submit "Update" %>
+    <%= f.submit "更新" %>
   </div>
 <% end %>
 
-<h3>Cancel my account</h3>
+<h3>退会する</h3>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+<p>退会はこちら <%= button_to "アカウント削除する", registration_path(resource_name), data: { confirm: "本当に削除しますか？" }, method: :delete %></p>
 
-<%= link_to "Back", :back %>
+<%= link_to "戻る", :back %>
