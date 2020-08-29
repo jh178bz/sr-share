@@ -9,5 +9,9 @@ Rails.application.routes.draw do
   get :about,   to: 'static_pages#about'
   get :terms,   to: 'static_pages#terms'
 
-  resources :users, only: :show
+  resources :users, only: :show do
+    member do
+      get :following, :followers
+    end
+  end
 end
