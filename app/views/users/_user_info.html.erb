@@ -1,0 +1,11 @@
+<aside class="col-md-4">
+  <section class="user-info">
+    <div class="circle-image">
+      <img src=<%= @user.image.url %>>
+      <div class="follow"><%= render 'follow_form' %></div>
+    </div>
+    <h1><%= @user.name %></h1>
+    <p><%= link_to '編集', edit_user_registration_path, style: :"color:gray;" %></p>
+  <div class="stats"><%= render 'shared/stats' %></div>
+  </section>
+</aside>

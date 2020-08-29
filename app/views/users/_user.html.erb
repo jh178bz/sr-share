@@ -1,5 +1,14 @@
-<li>
-  <%#= gravatar_for user, size: 50 %>
-  <%= link_to user.name, user %>さん
-  <%#= user.review.count %>
+<li class="list-group-item">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3 users-image">
+        <img src=<%= @user.image.url %>>
+      </div>
+      <div class="col-md-3 user-name">
+        <%= link_to user.name, user %>さん
+      </div>
+    </div>
+    <%#= user.review.count %>
+    投稿レビュー数 200件
+  </div>
 </li>
