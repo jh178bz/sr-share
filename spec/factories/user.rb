@@ -4,4 +4,10 @@ FactoryBot.define do
     email { "guest@example.com" }
     password { "password" }
   end
+
+  factory :followed_user do
+    name { "テストユーザー2" }
+    email { "guest2@example.com" }
+    password { "password" }
+  end
 end

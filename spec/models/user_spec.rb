@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
+  let(:user) { create(:user) }
+  let(:user2) { create(:user, name: "user2", email: "testuser2@example.com") }
 # 名前、email、passwordがあれば有効
   it "is valid with a name, email, password" do
     expect(FactoryBot.build(:user)).to be_valid
@@ -35,5 +37,22 @@ RSpec.describe User, type: :model do
   # 10文字以上の名前は無効
   it "is invalid 10 characters or more a name" do
     expect(FactoryBot.build(:user, name: "longlongname" )).to_not be_valid
+  end
+
+  context 'user follow' do
+    it "usually not follow" do
+      expect(user.following?(user2)).to_not be_truthy
+    end
+
+    it "user can follow a user2" do
+      user.follow(user2)
+      expect(user.following?(user2)).to be_truthy
+    end
+
+    it "user can unfollow a user2" do
+      user.follow(user2)
+      user.unfollow(user2)
+      expect(user.following?(user2)).to_not be_truthy
+    end
   end
 end

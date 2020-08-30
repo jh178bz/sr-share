@@ -5,6 +5,6 @@ RSpec.describe "UserPage", type: :request do
 
   it "is responds succesfully" do
     get user_path(user)
-    expect(respose).to render_template('users/show') 
+    expect(response).to have_http_status(200) 
   end
 end
