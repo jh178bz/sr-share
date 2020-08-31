@@ -1,0 +1,20 @@
+<% provide(:title, @item.name) %>
+<div class="row">
+  <aside class="col-md-4">
+    <section>
+      <div class="item-image">
+        <img src=<%= @item.image.url %>>
+      </div>
+      <h1><%= @item.name %></h1>
+      <h2>商品説明</h2>
+      <p><%= @item.content %></p>
+      <h1>グリップカテゴリ</h1>
+      <% @item.categories.each do |categories| %>
+        <p><%= categories.name %></p>
+      <% end %>
+    </section>
+  </aside>
+  <div class="col-md-8">
+
+  </div>
+</div>

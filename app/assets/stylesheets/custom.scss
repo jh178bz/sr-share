@@ -177,6 +177,12 @@ aside {
   object-fit: cover;
 }
 
+.item-image img {
+  width: 100%;
+  height: auto;
+  background-color: white;
+}
+
 .list-group-item {
   margin-top: 10px;
 }
@@ -192,4 +198,8 @@ aside {
   margin-top: 50px;
   padding: 0;
   float: right;
+}
+
+.container .item {
+  margin-top: 60px;
 }
