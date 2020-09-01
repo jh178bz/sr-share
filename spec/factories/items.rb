@@ -1,7 +1,6 @@
 FactoryBot.define do
   factory :item do
-    name { "MyString" }
-    image { "MyString" }
-    content { "MyText" }
+    name { "テストアイテム" }
+    content { "テストコメント" }
   end
 end
