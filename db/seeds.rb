@@ -8,6 +8,12 @@
                password_confirmation: password)
 end
 
+User.create!(name: "管理者ユーザー",
+             email: "admin@example.com",
+             password:              password,
+             password_confirmation: password,
+             adimin:true)
+
 users = User.all
 user  = users.first
 following = users[2..50]
