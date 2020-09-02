@@ -13,6 +13,7 @@
         <p><%= categories.name %></p>
       <% end %>
     </section>
+    <%= link_to 'アイテム削除', @item, method: :delete, date: { confirm: "削除しますか?" } if current_user.admin? %>
   </aside>
   <div class="col-md-8">
 

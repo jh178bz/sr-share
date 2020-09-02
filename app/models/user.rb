@@ -34,8 +34,4 @@ class User < ApplicationRecord
   def following?(other_user)
     following.include?(other_user)
   end
-  # adminかどうか
-  def admin_user
-    redirect_to(root_url) unless current_user.admin?
-  end
 end

@@ -1,6 +1,8 @@
 class ItemsController < ApplicationController
+  include UsersHelper
   before_action :authenticate_user!, except: [:show]
-
+  before_action :admin_user, only: [:new, :create, :destroy]
+  
   def index
     @item = Item.all
   end
@@ -25,6 +27,9 @@ class ItemsController < ApplicationController
   end
 
   def destroy
+    Item.find(params[:id]).destroy
+    flash[:notice] = "削除しました"
+    redirect_to new_item_path
   end
 
   private
