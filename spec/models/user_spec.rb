@@ -36,19 +36,20 @@ RSpec.describe User, type: :model do
   end
   # 10文字以上の名前は無効
   it "is invalid 10 characters or more a name" do
-    expect(FactoryBot.build(:user, name: "longlongname" )).to_not be_valid
+    expect(FactoryBot.build(:user, name: "a" * 10 + "name" )).to_not be_valid
   end
 
   context 'user follow' do
+    # defaultではfollowしていない
     it "usually not follow" do
       expect(user.following?(user2)).to_not be_truthy
     end
-
+    # userはfollowできる
     it "user can follow a user2" do
       user.follow(user2)
       expect(user.following?(user2)).to be_truthy
     end
-
+    # userはフォロー外せる
     it "user can unfollow a user2" do
       user.follow(user2)
       user.unfollow(user2)
