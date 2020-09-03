@@ -10,4 +10,10 @@ FactoryBot.define do
     email { "guest2@example.com" }
     password { "password" }
   end
+
+  factory :admin do
+    name { "管理者ユーザー" }
+    email { "admin@example.com" }
+    password { "password" }
+  end
 end
