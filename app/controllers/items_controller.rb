@@ -1,8 +1,7 @@
 class ItemsController < ApplicationController
-  include UsersHelper
-  before_action :authenticate_user!, except: [:show]
+  before_action :authenticate_user!, only: [:show]
   before_action :admin_user, only: [:new, :create, :destroy]
-  
+
   def index
     @item = Item.all
   end
@@ -36,5 +35,10 @@ class ItemsController < ApplicationController
 
     def item_params
       params.require(:item).permit(:name, :image, :content, maker_ids: [], category_ids: [])
+    end
+
+    # adminかどうか
+    def admin_user
+      redirect_to(root_url) unless current_user.admin?
     end
 end
