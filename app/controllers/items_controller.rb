@@ -36,9 +36,4 @@ class ItemsController < ApplicationController
     def item_params
       params.require(:item).permit(:name, :image, :content, maker_ids: [], category_ids: [])
     end
-
-    # adminかどうか
-    def admin_user
-      redirect_to(root_url) unless current_user.admin?
-    end
 end
