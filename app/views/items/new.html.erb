@@ -30,4 +30,6 @@
   <%= f.submit 'タイヤ作成', class: 'btn btn-warning btn-block' %>
   <% end %>
 
+  <%= link_to "カテゴリー追加はこちら", new_category_path if current_user.admin? %>
+
 </div>
