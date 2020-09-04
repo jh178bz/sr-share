@@ -1,0 +1,28 @@
+<% provide :title, "タイヤカテゴリー登録" %>
+<div class="container item">
+  <%= form_with(model: @category, local: true) do |f| %>
+  <div class="form-group">
+    <%= f.label :name, 'カテゴリー名' %>
+    <%= f.text_field :name, class: "form-control" %>
+    <small class="form-text text-muted"></small>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :id, 'カテゴリーナンバー' %>
+    <%= f.text_field :id, class: "form-control", placeholder: "#{@categories.count + 1}" %>
+
+  </div>
+
+  <%= f.submit 'カテゴリー作成', class: 'btn btn-warning btn-block' %>
+  <% end %>
+
+  <!-- <ul class="list-group">
+    <#% @categories.each do |category| %>
+      <li　class="list-group-item">
+        <#%= category.name %>
+        <#%= link_to '削除', category_path(category.id), method: :delete, date: { confirm: "削除しますか?" } %>
+      </li><br>
+    <#% end %>
+  </ul> -->
+
+</div>
