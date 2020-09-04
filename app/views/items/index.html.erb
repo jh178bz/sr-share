@@ -1,0 +1,18 @@
+<ul class="list-group">
+  <% @items.each do |item| %>
+  <li class="list-group-item">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3 item-image">
+          <img src=<%= item.image.url %>>
+        </div>
+        <div class="col-md-3 item-name">
+          <%= link_to item.name, item_path(item.id) %>
+        </div>
+      </div>
+      <%#= user.review.count %>
+      投稿レビュー数 200件
+    </div>
+  </li>
+  <% end %>
+</ul>

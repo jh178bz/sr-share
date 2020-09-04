@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
   before_action :admin_user, only: [:new, :create, :destroy]
 
   def index
-    @item = Item.all
+    @items = Item.all
   end
 
   def show
