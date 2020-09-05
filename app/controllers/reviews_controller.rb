@@ -16,7 +16,7 @@ class ReviewsController < ApplicationController
       flash[:notice] = "レビューを投稿しました"
       redirect_to item_path(@item.id)
     else
-      flash.now[:notice] = "作成に失敗しました"
+      flash.now[:notice] = "投稿に失敗しました"
       render 'new'
     end
   end
