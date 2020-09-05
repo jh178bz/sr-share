@@ -1,10 +1,10 @@
 FactoryBot.define do
   factory :review do
-    title { "MyString" }
-    content { "MyText" }
-    image { "MyString" }
-    user { nil }
-    item { nil }
+    title { "テストタイトル" }
+    content { "テストコンテント" }
+    image { nil }
+    association :user
+    association :item
     rate { 1.5 }
   end
 end
