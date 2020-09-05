@@ -14,6 +14,7 @@
       <% end %>
     </section>
     <%= link_to 'アイテム削除', @item, method: :delete, date: { confirm: "削除しますか?" } if current_user.admin? %>
+    <%= link_to 'レビューする', new_item_review_path(@item.id) %>
   </aside>
   <div class="col-md-8">
 
