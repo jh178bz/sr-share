@@ -16,7 +16,10 @@ Rails.application.routes.draw do
     end
   end
   resources :relationships,  only: [:create, :destroy]
-  resources :items,  only: [:index, :show, :new, :create, :destroy]
-  resources :categories,  only: [:new, :create, :destroy]
+  resources :items,          only: [:index, :show, :new, :create, :destroy] do
+    resources :reviews,      only: [:show, :new, :create, :destory]
+  end
+  resources :categories,     only: [:new, :create, :destroy]
+
 
 end
