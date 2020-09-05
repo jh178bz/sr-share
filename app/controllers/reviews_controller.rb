@@ -27,6 +27,11 @@ class ReviewsController < ApplicationController
     redirect_to item_path
   end
 
+  # def confirm_new
+  #   @review = current_user.reviews.new(review_params)
+  #   render :new unless @review.valid?
+  # end
+
   private
 
   def review_params

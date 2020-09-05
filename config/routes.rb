@@ -17,7 +17,9 @@ Rails.application.routes.draw do
   end
   resources :relationships,  only: [:create, :destroy]
   resources :items,          only: [:index, :show, :new, :create, :destroy] do
-    resources :reviews,      only: [:show, :new, :create, :destory]
+    resources :reviews,      only: [:show, :new, :create, :destory] do
+      post :confirm, action: :confirm_new, on: :new
+    end
   end
   resources :categories,     only: [:new, :create, :destroy]
 
