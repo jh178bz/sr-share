@@ -1,0 +1,40 @@
+<% provide :title, "レビュー投稿" %>
+<div class="container item">
+  <%= form_with(model: [@item, @review], url: item_reviews_path, local: true) do |f| %>
+
+  <div class="form-group">
+    <%= f.label :title, 'レビュータイトル' %><span class="badge badge-danger">必須</span>
+    <%= f.text_field :title, class: "form-control" %>
+  </div>
+
+  <div class="form-group" id="star">
+    <%= f.label :rate, '評価' %><span class="badge badge-danger">必須</span>
+    <%= f.hidden_field :rate %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :content, 'レビューを記入する' %><span class="badge badge-danger">必須</span>
+    <%= f.text_area :content, class: "form-control" %>
+    <small class="form-text text-muted">200文字以内</small>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :image, '画像を添付する' %><span class="badge badge-danger">任意</span>
+    <%= f.file_field :image, class: "form-control-file" %>
+  </div>
+
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.submit '入力内容を確認する', class: 'btn btn-warning btn-block' %>
+  <% end %>
+</div>
+
+<script>
+$('#star').raty({
+  size     : 36,
+  starOff:  '<%= asset_path('star-off.png') %>',
+  starOn : '<%= asset_path('star-on.png') %>',
+  starHalf: '<%= asset_path('star-half.png') %>',
+  scoreName: 'review[rate]',
+  half: true,
+});
+</script>
