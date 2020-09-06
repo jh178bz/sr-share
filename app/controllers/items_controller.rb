@@ -8,6 +8,7 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
+    @reviews = @item.reviews.paginate(page: params[:page])
   end
 
   def new
