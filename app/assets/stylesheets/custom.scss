@@ -203,3 +203,56 @@ aside {
 .container .item {
   margin-top: 60px;
 }
+
+/* form */
+.badge-danger {
+  margin-left: 5px;
+}
+
+/* reviews */
+
+.reviews {
+  list-style: none;
+  padding: 20px;
+  background-color: #fff;
+  li {
+    padding: 10px 10px;
+    border-top: 1px solid gray;
+  }
+  .user {
+    margin-top: 5em;
+    padding-top: 0;
+  }
+  .content {
+    display: block;
+    margin-left: 40px;
+    img {
+      display: block;
+      margin-left: 40px;
+      padding: 5px 0;
+      width: 250px;
+      height: 200px;
+    }
+  }
+  .timestamp {
+    color: $gray-light;
+    display: block;
+    margin-top: 5px;
+    margin-left: 20px;
+  }
+
+  .content-image img {
+
+  }
+  .review-user img {
+    float: left;
+    width: 60px;
+    height: 60px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+
+  .info {
+
+  }
+}
