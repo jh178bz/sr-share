@@ -1,0 +1,36 @@
+<% reviews.each do |review| %>
+  <li id="review-<%= review.id %>">
+    <h4><%= review.title %></h4>
+    <div class="review-user">
+      <img src=<%= review.user.image.url %>>
+    </div>
+    <div class="info">
+      <span class="user"><%= link_to review.user.name, review.user %></span>
+    </div>
+
+    <!-- 星評価 -->
+    <div id="star-rate-<%= review.id %>"><%= review.rate %></div>
+    <script>
+    $('#star-rate-<%= review.id %>').raty({
+      size: 36,
+      starOff:  '<%= asset_path('star-off.png') %>',
+      starOn: '<%= asset_path('star-on.png') %>',
+      starHalf: '<%= asset_path('star-half.png') %>',
+      half: true,
+      readOnly: true,
+      score: <%= review.rate %>
+    });
+    </script>
+
+    <div class="content">
+      <span class="content"><%= review.content %></span>
+      <span class="content-image"><%= image_tag review.image.url if review.image? %></span>
+      <div class="timestamp">
+        <span class="timestamp">
+          投稿 <%= time_ago_in_words(review.created_at) %> 前
+        </span>
+      </div>
+    </div>
+
+  </li>
+<% end %>

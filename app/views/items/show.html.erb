@@ -17,6 +17,12 @@
     <%= link_to 'レビューする', new_item_review_path(@item.id) %>
   </aside>
   <div class="col-md-8">
-
+    <% if @item.reviews.any? %>
+      <h3><%= @item.reviews.count %>件のレビュー</h3>
+      <ol class="reviews">
+        <%= render 'review', reviews: @reviews %>
+      </ol>
+      <%= will_paginate @reviews %>
+    <% end %>
   </div>
-</div>
+  </div>
