@@ -6,4 +6,5 @@ class Review < ApplicationRecord
   validates :title,   presence: true
   validates :content, presence: true, length: { maximum: 200 }
   validates :rate,    presence: true
+  mount_uploader :image, ImageUploader
 end
