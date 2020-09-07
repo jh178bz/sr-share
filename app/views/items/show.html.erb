@@ -13,8 +13,8 @@
         <p><%= categories.name %></p>
       <% end %>
     </section>
-    <%= link_to 'アイテム削除', @item, method: :delete, date: { confirm: "削除しますか?" } if current_user.admin? %>
-    <%= link_to 'レビューする', new_item_review_path(@item.id) %>
+    <%= link_to 'タイヤ削除', @item, method: :delete, date: { confirm: "削除しますか?" }, class: 'btn btn-danger' if current_user.admin? %>
+    <%= link_to 'レビューする', new_item_review_path(@item.id), class: 'btn btn-warning' %>
   </aside>
   <div class="col-md-8">
     <% if @item.reviews.any? %>
