@@ -20,9 +20,9 @@
     <% if @item.reviews.any? %>
       <h3><%= @item.reviews.count %>件のレビュー</h3>
       <ol class="reviews">
-        <%= render 'review', reviews: @reviews %>
+        <%= render 'shared/review', reviews: @reviews %>
       </ol>
       <%= will_paginate @reviews %>
     <% end %>
   </div>
-  </div>
+</div>
