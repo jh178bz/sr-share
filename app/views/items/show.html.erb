@@ -18,7 +18,7 @@
   </aside>
   <div class="col-md-8">
     <% if @item.reviews.any? %>
-      <h3><%= @item.reviews.count %>件のレビュー</h3>
+      <h3><%= @item.reviews.count unless @item.reviews.count == 0 %>件のレビュー</h3>
       <ol class="reviews">
         <%= render 'shared/review', reviews: @reviews %>
       </ol>

@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_item
+  before_action :find_item, only: [:new, :create]
 
   def show
   end
@@ -22,9 +22,16 @@ class ReviewsController < ApplicationController
   end
 
   def destroy
-    Review.find(params[:id]).destroy
-    flash[:notice] = "レビューを削除しました"
-    redirect_to item_path
+    user_id = current_user.id
+    item = Item.find(params[:id])
+    review = item.reviews.find_by(user_id: user_id)
+     if review.destroy
+       flash[:notice] = "レビューを削除しました"
+       redirect_to item_path
+     else
+       flash.now[:notice] = "削除に失敗しました"
+       render item_path(@item.id)
+     end
   end
 
   # def confirm_new
