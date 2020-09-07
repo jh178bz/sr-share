@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "Users", type: :system do
   let!(:user) { create(:user) }
+  let(:review) { create(:review, user: user, user_id: user.id) }
 
   describe "user signup page" do
     context "user signup process" do
@@ -36,20 +37,16 @@ RSpec.describe "Users", type: :system do
         visit user_path(user)
       end
 
-      it "user page have content [マイページ]" do
-        pending 'viewの調整を行った時にwithinで絞る'
-        expect(page).to have_text "マイページ"
-      end
-
       it "title is correctly displayed" do
         expect(full_title('マイページ')).to eq "マイページ - SR Share"
       end
 
-      it "user infomation is displayed" do
-        pending 'viewの調整を行った時にwithinで絞る'
-        within '.media-body' do
-          expect(page).to have_content user.name
-        end
+      it "is displayed item review count" do
+        expect(page).to have_content user.reviews.count
+      end
+
+      it "is displayed user review" do
+        expect(page).to have_content user.reviews.first
       end
     end
   end
