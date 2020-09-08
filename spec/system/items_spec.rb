@@ -47,6 +47,7 @@ RSpec.describe "Items", type: :system do
   describe "tire item detail page" do
     let!(:user) { create(:user)}
     let!(:item) { create(:item)}
+    let(:review) { create(:review, item: item, user: user)}
 
     context "show page layout" do
       before do
@@ -75,6 +76,11 @@ RSpec.describe "Items", type: :system do
       # レビュー件数
       it "is displayed item review count" do
         expect(page).to have_content item.reviews.count
+      end
+
+      # レビュー件数が0の時は表示されない
+      it "review count is not displayed when review count is 0" do
+        expect(page).to_not have_content '0件のレビュー'
       end
     end
     context "In case of admin" do

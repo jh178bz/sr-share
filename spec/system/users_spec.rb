@@ -34,6 +34,7 @@ RSpec.describe "Users", type: :system do
   describe "user detail page" do
     context "page content is correctly" do
       before do
+        sign_in user
         visit user_path(user)
       end
 
