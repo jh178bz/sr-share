@@ -25,13 +25,13 @@ class ReviewsController < ApplicationController
     user_id = current_user.id
     item = Item.find(params[:id])
     review = item.reviews.find_by(user_id: user_id)
-     if review.destroy
-       flash[:notice] = "レビューを削除しました"
-       redirect_to item_path
-     else
-       flash.now[:notice] = "削除に失敗しました"
-       render item_path(@item.id)
-     end
+    if review.destroy
+      flash[:notice] = "レビューを削除しました"
+      redirect_to item_path
+    else
+      flash.now[:notice] = "削除に失敗しました"
+      render item_path(@item.id)
+    end
   end
 
   # def confirm_new

@@ -27,7 +27,7 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-     Item.find(params[:id]).destroy
+    Item.find(params[:id]).destroy
     flash[:notice] = "削除しました"
     redirect_to new_item_path
   end
