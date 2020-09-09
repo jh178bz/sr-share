@@ -5,6 +5,7 @@
       <div class="item-image">
         <img src=<%= @item.image.url %>>
       </div>
+      <%= render 'users/favorite_form' %>
       <h1><%= @item.name %></h1>
       <h2>商品説明</h2>
       <p><%= @item.content %></p>
