@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "Users", type: :system do
   let!(:user) { create(:user) }
+  let!(:item) { create(:item) }
   let(:review) { create(:review, user: user, user_id: user.id) }
 
   describe "user signup page" do
@@ -49,6 +50,20 @@ RSpec.describe "Users", type: :system do
       it "is displayed user review" do
         expect(page).to have_content user.reviews.first
       end
+    end
+  end
+
+  context "favorite" do
+    before do
+      sign_in user
+    end
+
+    it "can favorite create and destroy" do
+      expect(user.favorite?(item)).to be_falsey
+      user.favorite(item)
+      expect(user.favorite?(item)).to be_truthy
+      user.unfavorite(item)
+      expect(user.favorite?(item)).to be_falsey
     end
   end
 end
