@@ -11,11 +11,11 @@ Rails.application.routes.draw do
   get :terms,   to: 'static_pages#terms'
 
   post 'favorites/:item_id/create',   to: 'favorites#create'
-  delete 'favorites/:item_id/delete', to: 'favorites#delete'
+  delete 'favorites/:item_id/destroy', to: 'favorites#destroy'
 
   resources :users, only: :show do
     member do
-      get :following, :followers
+      get :following, :followers, :favorites
     end
   end
   resources :relationships,  only: [:create, :destroy]

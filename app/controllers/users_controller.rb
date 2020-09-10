@@ -19,4 +19,11 @@ class UsersController < ApplicationController
     @users = @user.followers.paginate(page: params[:page])
     render 'show_follow'
   end
+
+  def favorites
+    @title = "お気に入り"
+    @user = User.find(params[:id])
+    @favorites = @user.favorites.paginate(page: params[:page])
+    render 'show_favorite'
+  end
 end
