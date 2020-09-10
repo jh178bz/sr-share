@@ -12,3 +12,5 @@ AllCops:
     - 'vendor/**/*'
     - 'spec/*/*'
     - 'app/helpers/application_helper.rb'
+    - 'app/models/favorite.rb'
+    - 'app/models/review.rb'
