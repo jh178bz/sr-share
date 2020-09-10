@@ -56,4 +56,16 @@ RSpec.describe User, type: :model do
       expect(user.following?(user2)).to_not be_truthy
     end
   end
+
+  context "favorite" do
+    let(:item) { create(:item) }
+
+    it "can favorite create and destroy" do
+      expect(user.favorite?(item)).to be_falsey
+      user.favorite(item)
+      expect(user.favorite?(item)).to be_truthy
+      user.unfavorite(item)
+      expect(user.favorite?(item)).to be_falsey
+    end
+  end
 end

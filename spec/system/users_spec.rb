@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe "Users", type: :system do
   let!(:user) { create(:user) }
   let!(:item) { create(:item) }
+  let!(:other_item) { create(:item, name: 'タイヤ２', content: 'タイヤ２のコンテント') }
   let(:review) { create(:review, user: user, user_id: user.id) }
 
   describe "user signup page" do
@@ -33,12 +34,12 @@ RSpec.describe "Users", type: :system do
   end
 
   describe "user detail page" do
-    context "page content is correctly" do
-      before do
-        sign_in user
-        visit user_path(user)
-      end
+    before do
+      sign_in user
+      visit user_path(user)
+    end
 
+    context "page content is correctly" do
       it "title is correctly displayed" do
         expect(full_title('マイページ')).to eq "マイページ - SR Share"
       end
@@ -51,19 +52,24 @@ RSpec.describe "Users", type: :system do
         expect(page).to have_content user.reviews.first
       end
     end
-  end
 
-  context "favorite" do
-    before do
-      sign_in user
-    end
-
-    it "can favorite create and destroy" do
-      expect(user.favorite?(item)).to be_falsey
-      user.favorite(item)
-      expect(user.favorite?(item)).to be_truthy
-      user.unfavorite(item)
-      expect(user.favorite?(item)).to be_falsey
+    context "user favorite item" do
+      it "is displayed favorite item" do
+        expect(user.favorites.count).to eq(0)
+        user.favorite(item)
+        user.favorite(other_item)
+        expect(user.favorites.count).to eq(2)
+        visit user_path(user)
+        click_on 'お気に入り'
+        expect(page).to have_content '2 お気に入り'
+        expect(page).to have_content item.name
+        expect(page).to have_content other_item.name
+        user.unfavorite(other_item)
+        visit user_path(user)
+        click_on 'お気に入り'
+        expect(page).to have_content '1 お気に入り'
+        expect(page).to have_no_content other_item.name
+      end
     end
   end
 end
