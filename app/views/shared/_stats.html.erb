@@ -12,10 +12,10 @@
     </strong>
     フォロワー
   </a>
-  <div class="review-count">
-    <strong id="review" class="stat">
-      <%= @user.reviews.count %>
+  <a href="<%= favorites_user_path(@user) %>">
+    <strong id="followers" class="stat">
+      <%= @user.favorites.count %>
     </strong>
-    総レビュー数
-  </div>
+    お気に入り
+  </a>
 </div>

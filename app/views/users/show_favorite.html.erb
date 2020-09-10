@@ -1,0 +1,13 @@
+<% provide(:title, @title) %>
+<div class="row">
+  <%= render 'user_info' %>
+  <div class="col-md-8">
+    <h3><%= @title %></h3>
+    <% if @favorites.any? %>
+      <ul class="list-group">
+        <%= render 'user_favorite', favorites: @favorites %>
+      </ul>
+      <%= will_paginate @favorites %>
+    <% end %>
+  </div>
+</div>

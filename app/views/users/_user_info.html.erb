@@ -7,6 +7,9 @@
     <div class="user-name">
       <h1><%= @user.name %></h1>
     </div>
+    <div class="review-count">
+      <p>総レビュー数(<%= @user.reviews.count %>)</p>
+    </div>
     <p><%= link_to '編集', edit_user_registration_path, style: :"color:gray;" if current_user?(@user) %></p>
     <div class="stats"><%= render 'shared/stats' %></div>
   </section>
