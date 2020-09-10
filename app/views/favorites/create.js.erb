@@ -1,1 +1,1 @@
-$("#favorite-<%= @item.id %>").html("<%= escape_javascript(render('users/unfavorite')) %>");
+$("#favorite-<%= @item.id %>").html("<%= escape_javascript(render 'users/unfavorite', item: @item) %>");
