@@ -9,7 +9,6 @@ class User < ApplicationRecord
   has_many :followers, through: :passive_relationships, source: :follower
   has_many :reviews, dependent: :destroy
   has_many :favorites, dependent: :destroy
-  has_many :items, through: :favorites
   validates :name, presence: true, length: { maximum: 10 }
   mount_uploader :image, ImageUploader
   devise :database_authenticatable, :registerable,
@@ -40,7 +39,7 @@ class User < ApplicationRecord
 
   # アイテムをお気に入りに登録する
   def favorite(item)
-    Favorite.create!(user_id: id, item_id: item.id)
+    Favorite.create(user_id: id, item_id: item.id)
   end
 
   # アイテムをお気に入り解除する
