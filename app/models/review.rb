@@ -6,5 +6,6 @@ class Review < ApplicationRecord
   validates :title,   presence: true
   validates :content, presence: true, length: { maximum: 200 }
   validates :rate,    presence: true
+  default_scope -> { order(created_at: :desc) }
   mount_uploader :image, ImageUploader
 end
