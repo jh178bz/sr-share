@@ -25,6 +25,6 @@ Rails.application.routes.draw do
     end
   end
   resources :categories,     only: [:new, :create, :destroy]
-
+  resources :notifications,  only: [:index, :destroy]
 
 end
