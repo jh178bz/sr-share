@@ -1,6 +1,7 @@
 class Review < ApplicationRecord
   belongs_to :user
   belongs_to :item
+  has_many  :notifications, dependent: :destroy
   validates :user_id, presence: true
   validates :item_id, presence: true
   validates :title,   presence: true
