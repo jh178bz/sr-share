@@ -1,29 +1,31 @@
 <% provide(:title, @item.name) %>
-<div class="row">
-  <aside class="col-md-4">
-    <section>
-      <div class="item-image">
-        <img src=<%= @item.image.url %>>
-      </div>
-      <%= render 'users/favorite_form' %>
-      <h1><%= @item.name %></h1>
-      <h2>商品説明</h2>
-      <p><%= @item.content %></p>
-      <h1>グリップカテゴリ</h1>
-      <% @item.categories.each do |categories| %>
-        <p><%= categories.name %></p>
+<div class="container">
+  <div class="row">
+    <aside class="col-md-4">
+      <section>
+        <div class="item-image">
+          <img src=<%= @item.image.url %>>
+        </div>
+        <%= render 'users/favorite_form' %>
+        <h1><%= @item.name %></h1>
+        <h2>商品説明</h2>
+        <p><%= @item.content %></p>
+        <h1>グリップカテゴリ</h1>
+        <% @item.categories.each do |categories| %>
+          <p><%= categories.name %></p>
+        <% end %>
+      </section>
+      <%= link_to 'タイヤ削除', @item, method: :delete, date: { confirm: "削除しますか?" }, class: 'btn btn-danger' if current_user.admin? %>
+      <%= link_to 'レビューする', new_item_review_path(@item.id), class: 'btn btn-warning' %>
+    </aside>
+    <div class="col-md-8">
+      <% if @item.reviews.any? %>
+        <h3><%= @item.reviews.count unless @item.reviews.count == 0 %>件のレビュー</h3>
+        <ol class="reviews">
+          <%= render 'shared/review', reviews: @reviews %>
+        </ol>
+        <%= will_paginate @reviews %>
       <% end %>
-    </section>
-    <%= link_to 'タイヤ削除', @item, method: :delete, date: { confirm: "削除しますか?" }, class: 'btn btn-danger' if current_user.admin? %>
-    <%= link_to 'レビューする', new_item_review_path(@item.id), class: 'btn btn-warning' %>
-  </aside>
-  <div class="col-md-8">
-    <% if @item.reviews.any? %>
-      <h3><%= @item.reviews.count unless @item.reviews.count == 0 %>件のレビュー</h3>
-      <ol class="reviews">
-        <%= render 'shared/review', reviews: @reviews %>
-      </ol>
-      <%= will_paginate @reviews %>
-    <% end %>
+    </div>
   </div>
 </div>
