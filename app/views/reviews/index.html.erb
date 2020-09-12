@@ -1,0 +1,15 @@
+<% provide(:title, "新着レビュー") %>
+<div class="container">
+  <% if @search_word.present? %>
+    <h1 class="h3">”<%= @search_word %>”の検索結果：<%= @reviwes.count %>件</h1>
+  <% else %>
+    <h1 class="h3">新着レビュー</h1>
+  <% end %>
+  <div class="review">
+    <%= render 'search' if user_signed_in? %>
+    <ol class="form-group reviews">
+      <%= render 'shared/review', reviews: @reviews %>
+    </ol>
+    <%= will_paginate %>
+  </div>
+</div>

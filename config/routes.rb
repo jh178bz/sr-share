@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   get :about,   to: 'static_pages#about'
   get :terms,   to: 'static_pages#terms'
 
+  get :reviews, to: 'reviews#index'
+
   post 'favorites/:item_id/create',   to: 'favorites#create'
   delete 'favorites/:item_id/destroy', to: 'favorites#destroy'
 
@@ -20,7 +22,7 @@ Rails.application.routes.draw do
   end
   resources :relationships,  only: [:create, :destroy]
   resources :items,          only: [:index, :show, :new, :create, :destroy] do
-    resources :reviews,      only: [:show, :new, :create, :destroy] do
+    resources :reviews,      only: [:new, :create, :destroy] do
       post :confirm, action: :confirm_new, on: :new
     end
   end
