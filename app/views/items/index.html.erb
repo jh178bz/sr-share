@@ -1,18 +1,27 @@
-<ul class="list-group">
-  <% @items.each do |item| %>
-  <li class="list-group-item">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-3 item-image">
-          <img src=<%= item.image.url %>>
-        </div>
-        <div class="col-md-3 item-name">
-          <%= link_to item.name, item_path(item.id) %>
-        </div>
-      </div>
-      <%#= user.review.count %>
-      投稿レビュー数 200件
-    </div>
-  </li>
+<% provide(:title, "タイヤ一覧") %>
+<div class="container">
+  <% if @search_word.present? %>
+    <h1 class="h3">”<%= @search_word %>”の検索結果：<%= @items.count %>件</h1>
+  <% else %>
+    <h1 class="h3">登録タイヤ一覧</h1>
   <% end %>
-</ul>
+  <div class="item">
+    <%= render 'search' if user_signed_in? %>
+    <ul class="list-group">
+      <% @items.each do |item| %>
+        <li class="list-group-item">
+            <div class="row">
+              <div class="col-md-3 item-image">
+                <img src=<%= item.image.url %>>
+              </div>
+              <div class="col-md-9 item-name">
+                <%= link_to item.name, item_path(item.id) %>
+              </div>
+            </div>
+            <p class="text-muted">投稿レビュー数 (<%= item.reviews.all.count %>)</p>
+        </li>
+      <% end %>
+    </ul>
+    <%= will_paginate %>
+  </div>
+</div>
