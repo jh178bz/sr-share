@@ -3,7 +3,9 @@ class ItemsController < ApplicationController
   before_action :admin_user, only: [:new, :create, :destroy]
 
   def index
-    @items = Item.all
+    @search_word = params[:q][:name_cont] if params[:q]
+    @q = Item.all.ransack(params[:q])
+    @items = @q.result(distinct: true).page(params[:page])
   end
 
   def show
