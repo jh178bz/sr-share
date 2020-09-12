@@ -1,0 +1,28 @@
+<% provide :title, "通知一覧" %>
+<% notices = @latest_notifications.where.not(visiter_id: current_user.id) %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h3>通知一覧</h3>
+    </div>
+  </div>
+  <ol class="list-group notifications">
+    <%= render 'notice', notices: notices %>
+  </ol>
+  <%= will_paginate %>
+
+  <% if notices.any? %>
+    <div class="notice-remind">
+      <h3>----------ここまでが未読の通知です----------</h3>
+    </div>
+  <% end %>
+
+  <%= render 'notice', notices: @old_notifications %>
+
+  <% if @old_notifications.any? %>
+    <div class="delete-notice">
+      <%= link_to "通知削除", notification_path(current_user.id), method: :delete,
+      data: { confirm: '全ての通知を削除します。本当に削除してよろしいでしょうか？' }, class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>

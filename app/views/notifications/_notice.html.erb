@@ -1,0 +1,16 @@
+<% notices.each do |notice| %>
+  <li class="list-group-item" id="notification-<%= notice.id %>">
+    <% if notice.action == 'follow' %>
+    <div class="container">
+      <div class="users-image">
+        <img src=<%= notice.visiter.image.url %>>
+      </div>
+      <p class="notification-message">
+        <%= link_to notice.visiter.name, user_path(notice.visiter)%>
+        さんがあなたをフォローしました。
+      </p>
+      <p><%= time_ago_in_words(notice.created_at) %>前</p>
+    </div>
+    <% end %>
+  </li>
+<% end %>
