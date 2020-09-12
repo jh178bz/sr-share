@@ -81,10 +81,6 @@ p {
 header {
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, .2);
 }
-.search-nav {
-  width: 200px;
-  padding-top: 9px;
-}
 
 /* footer */
 
@@ -256,6 +252,24 @@ aside {
     height: 60px;
     margin-right: 10px;
     margin-bottom: 10px;
+  }
+
+  .review-item {
+    border:solid;
+    border-color: #f4f4f4;
+    display: inline-block;
+    border-radius: 15px;
+    padding: 5px;
+    .review-count {
+      padding: 2px;
+      margin-bottom: 0px;
+    }
+    img {
+      margin: 5px;
+      height: auto;
+      max-width: 25%;
+      float: left;
+    }
   }
 }
 
