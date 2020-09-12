@@ -96,4 +96,32 @@ RSpec.describe "Items", type: :system do
       end
     end
   end
+
+  describe "tire item index page" do
+    let!(:user) { create(:user)}
+    let!(:item1) { create(:item, name: "テストタイヤ1")}
+    let!(:item2) { create(:item, name: "テストタイヤ2")}
+
+    before do
+      sign_in user
+      visit items_path
+    end
+
+    context "search function" do
+      it "is displayed search form" do
+
+        expect(page).to have_css '.form-group'
+        expect(page).to have_button '検索'
+      end
+
+      it "is displayed items including seach content" do
+        expect(page).to have_content item1.name
+        expect(page).to have_content item2.name
+        fill_in 'q[name_cont]', with: '1'
+        click_button '検索'
+        expect(page).to have_content item1.name
+        expect(page).not_to have_content item2.name
+      end
+    end
+  end
 end

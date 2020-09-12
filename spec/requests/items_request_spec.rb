@@ -35,25 +35,36 @@ RSpec.describe "Items", type: :request do
     before do
       sign_in user
     end
-    # showpage正常レスポンス
-    it "is show_page responds succesfully" do
-      get item_path(item)
-      expect(response).to have_http_status(200)
+
+    context "item show page" do
+      # showpage正常レスポンス
+      it "is show_page responds succesfully" do
+        get item_path(item)
+        expect(response).to have_http_status(200)
+      end
+      # newpageはアクセス出来ずroot_pathへ
+      it "is new_page responds failure" do
+        get new_item_path
+        expect(response).to have_http_status(302)
+        expect(response).to redirect_to root_path
+      end
+      # 商品作成ができ無い
+      it "can not create tire item" do
+        expect { post items_path, params: { item: item_params }}.to change(Item, :count).by(0)
+      end
+      # 商品削除ができ無い
+      it "can not destroy tire item" do
+        item1 = FactoryBot.create(:item)
+        expect { delete item_path(item1) }.to change(Item, :count).by(0)
+      end
     end
-    # newpageはアクセス出来ずroot_pathへ
-    it "is new_page responds failure" do
-      get new_item_path
-      expect(response).to have_http_status(302)
-      expect(response).to redirect_to root_path
-    end
-    # 商品作成ができ無い
-    it "can not create tire item" do
-      expect { post items_path, params: { item: item_params }}.to change(Item, :count).by(0)
-    end
-    # 商品削除ができ無い
-    it "can not destroy tire item" do
-      item1 = FactoryBot.create(:item)
-      expect { delete item_path(item1) }.to change(Item, :count).by(0)
+
+    context "item index page" do
+      it "is index_page responds succesfully" do
+        get items_path
+        expect(response).to have_http_status(200)
+        expect(response).to render_template('items/index')
+      end
     end
   end
 
@@ -61,6 +72,12 @@ RSpec.describe "Items", type: :request do
     # showpageはアクセス出来ずログインページへ
     it "is show_page responds failure" do
       get item_path(item)
+      expect(response).to have_http_status(302)
+      expect(response).to redirect_to user_session_path
+    end
+
+    it "is index_page responds failure" do
+      get items_path
       expect(response).to have_http_status(302)
       expect(response).to redirect_to user_session_path
     end

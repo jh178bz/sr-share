@@ -3,13 +3,12 @@ require 'rails_helper'
 RSpec.describe "Notifications", type: :request do
   let(:user) { create(:user) }
 
-  before do
-    sign_in user
-  end
-
   describe "notification page" do
     context "In case of login user" do
-
+      
+      before do
+        sign_in user
+      end
       it "is responds succesfully" do
         get notifications_path
         expect(response).to have_http_status(200)
