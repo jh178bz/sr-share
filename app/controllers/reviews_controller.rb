@@ -2,7 +2,10 @@ class ReviewsController < ApplicationController
   before_action :authenticate_user!
   before_action :find_item, only: [:new, :create]
 
-  def show
+  def index
+    @search_word = params[:q][:name_cont] if params[:q]
+    @q = Review.all.includes(:item).ransack(params[:q])
+    @reviews = @q.result(distinct: true).page(params[:page])
   end
 
   def new
@@ -23,14 +26,14 @@ class ReviewsController < ApplicationController
 
   def destroy
     user_id = current_user.id
-    item = Item.find(params[:id])
+    item = Item.find_by(id: params[:item_id])
     review = item.reviews.find_by(user_id: user_id)
     if review.destroy
       flash[:notice] = "レビューを削除しました"
-      redirect_to item_path
+      redirect_to user_path(user_id)
     else
       flash.now[:notice] = "削除に失敗しました"
-      render item_path(@item.id)
+      render user_path(user_id)
     end
   end
 
