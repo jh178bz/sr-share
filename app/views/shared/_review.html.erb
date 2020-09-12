@@ -1,38 +1,59 @@
 <% reviews.each do |review| %>
   <li id="review-<%= review.id %>">
-    <h4><%= review.title %></h4>
-    <div class="review-user">
-      <img src=<%= review.user.image.url %>>
-    </div>
-    <div class="info">
-      <span class="user"><%= link_to review.user.name, review.user %></span>
-    </div>
+    <div class="row">
+      <% if current_page?(reviews_path) %>
+        <div class="col-md-8">
+      <% else %>
+        <div class="col-md-12">
+      <% end %>
+        <div class="review-content">
+          <h4><%= review.title %></h4>
+          <div class="review-user">
+            <img src=<%= review.user.image.url %>>
+          </div>
+          <div class="info">
+            <span class="user"><%= link_to review.user.name, review.user %></span>
+          </div>
 
-    <!-- 星評価 -->
-    <div id="star-rate-<%= review.id %>"><%= review.rate %></div>
-    <script>
-    $('#star-rate-<%= review.id %>').raty({
-      size: 36,
-      starOff:  '<%= asset_path('star-off.png') %>',
-      starOn: '<%= asset_path('star-on.png') %>',
-      starHalf: '<%= asset_path('star-half.png') %>',
-      half: true,
-      readOnly: true,
-      score: <%= review.rate %>
-    });
-    </script>
+          <!-- 星評価 -->
+          <div id="star-rate-<%= review.id %>"><%= review.rate %></div>
+          <script>
+          $('#star-rate-<%= review.id %>').raty({
+            size: 36,
+            starOff:  '<%= asset_path('star-off.png') %>',
+            starOn: '<%= asset_path('star-on.png') %>',
+            starHalf: '<%= asset_path('star-half.png') %>',
+            half: true,
+            readOnly: true,
+            score: <%= review.rate %>
+          });
+          </script>
 
-    <div class="content">
-      <span class="content"><%= review.content %></span>
-      <span class="content-image"><%= image_tag review.image.url if review.image? %></span>
-      <div class="timestamp">
-        <span class="timestamp">
-          投稿 <%= time_ago_in_words(review.created_at) %> 前
-          <% if @item.present? && current_page?(item_path(@item.id)) && current_user?(current_user) %>
-            <%= link_to '削除', item_review_path(@item.id), method: :delete, date: { confirm: "削除しますか?" } %>
-          <% end %>
-        </span>
+          <div class="content">
+            <span class="content"><%= review.content %></span>
+            <span class="content-image"><%= image_tag review.image.url if review.image? %></span>
+            <div class="timestamp">
+              <span class="timestamp">
+                投稿 <%= time_ago_in_words(review.created_at) %> 前
+                <% if review.item.present? && current_page?(user_path(current_user.id)) && current_user?(current_user) %>
+                  <%= link_to '削除', item_review_path(review.item.id), method: :delete, date: { confirm: "削除しますか?" } %>
+                <% end %>
+              </span>
+            </div>
+          </div>
+        </div>
       </div>
+      <% if current_page?(reviews_path) %>
+        <div class="col-md-4">
+          <div class="review-item">
+            <%= link_to(item_path(review.item.id)) do %>
+              <img src=<%= review.item.image.url %>>
+              <p><%= review.item.name %></p>
+            <% end %>
+            <p class="review-count"><%= review.item.reviews.count %>件のレビュー</p>
+          </div>
+        </div>
+      <% end %>
     </div>
   </li>
 <% end %>
