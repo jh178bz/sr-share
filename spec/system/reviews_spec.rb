@@ -46,4 +46,33 @@ RSpec.describe "Reviews", type: :system do
       end
     end
   end
+
+  describe "tire item index page" do
+    let!(:user) { create(:user)}
+    let!(:item1) { create(:item, name: "テストタイヤ1")}
+    let!(:item2) { create(:item, name: "テストタイヤ2")}
+    let!(:review1) { create(:review, title:"テストタイトル1", item: item1, user: user)}
+    let!(:review2) { create(:review, title: "テストタイトル2", item: item2, user: user)}
+
+    before do
+      sign_in user
+      visit reviews_path
+    end
+
+    context "search function" do
+      it "is displayed search form" do
+        expect(page).to have_css '.form-group'
+        expect(page).to have_button '検索'
+      end
+
+      it "is displayed reviews including seach content" do
+        expect(page).to have_content review1.title
+        expect(page).to have_content review2.title
+        fill_in 'q[title_or_content_cont]', with: '1'
+        click_button '検索'
+        expect(page).to have_content review1.title
+        expect(page).not_to have_content review2.title
+      end
+    end
+  end
 end

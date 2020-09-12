@@ -19,17 +19,26 @@ RSpec.describe "Reviews", type: :request do
     it "can create review" do
       expect { post item_reviews_path(item.id), params: { review: review_params }}.to change(Review, :count).by(1)
     end
-    # # レビュー削除できる
-    # it "can destroy review" do
-    #   review = FactoryBot.create(:review, item: item, user: user)
-    #   expect { delete "/items/#{item.id}/reviews/#{review.id}" }.to change(Review, :count).by(-1)
-    # end
+
+    context "review index page" do
+      it "is index_page responds succesfully" do
+        get reviews_path
+        expect(response).to have_http_status(200)
+        expect(response).to render_template('reviews/index')
+      end
+    end
   end
 
-  describe "In case of not login user" do
+  context "In case of not login user" do
     # ログインページに戻される
     it "redirect to login page" do
       get new_item_review_path(item.id)
+      expect(response).to have_http_status(302)
+      expect(response).to redirect_to user_session_path
+    end
+
+    it "is index_page responds failure" do
+      get reviews_path
       expect(response).to have_http_status(302)
       expect(response).to redirect_to user_session_path
     end
