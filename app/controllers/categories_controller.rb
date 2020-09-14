@@ -1,6 +1,15 @@
 class CategoriesController < ApplicationController
   before_action :authenticate_user!
-  before_action :admin_user
+  before_action :admin_user, only: [:new, :create, :destroy]
+
+  def index
+    @categories = Category.all
+  end
+
+  def show
+    @category = Category.find(params[:id])
+    @items = @category.items.page(params[:page])
+  end
 
   def create
     @category = Category.new(category_params)

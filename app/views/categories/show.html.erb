@@ -1,0 +1,11 @@
+<% provide(:title, @category.name) %>
+<div class="container">
+  <h1 class="h3"><%= @category.name %>カテゴリ</h1>
+  <div class="item">
+    <%#= render 'shared/search' if user_signed_in? %>
+    <ul class="list-group">
+      <%= render 'shared/items', items: @items %>
+    </ul>
+    <%= will_paginate @items %>
+  </div>
+</div>

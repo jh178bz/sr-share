@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   post 'favorites/:item_id/create',   to: 'favorites#create'
   delete 'favorites/:item_id/destroy', to: 'favorites#destroy'
 
-  resources :users, only: [:show, :index] do
+  resources :users, only: [:index, :show] do
     member do
       get :following, :followers, :favorites
     end
@@ -26,7 +26,7 @@ Rails.application.routes.draw do
       post :confirm, action: :confirm_new, on: :new
     end
   end
-  resources :categories,     only: [:new, :create, :destroy]
+  resources :categories,     only: [:index, :show, :new, :create, :destroy]
   resources :notifications,  only: [:index, :destroy]
 
 end

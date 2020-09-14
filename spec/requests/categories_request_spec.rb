@@ -19,4 +19,25 @@ RSpec.describe "Categories", type: :request do
       expect { post categories_path, params: { category: category_params }}.to change(Category, :count).by(1)
     end
   end
+
+  describe "category index page" do
+    let(:user) { create(:user) }
+
+    context "In case of login user" do
+      it "is index_page responds succesfully" do
+        sign_in user
+        get categories_path
+        expect(response).to have_http_status(200)
+        expect(response).to render_template('categories/index')
+      end
+    end
+
+    context "In case of not login user" do
+      it "is index_page responds failure" do
+        get categories_path
+        expect(response).to have_http_status(302)
+        expect(response).to redirect_to user_session_path
+      end
+    end
+  end
 end
