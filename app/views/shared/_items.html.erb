@@ -1,0 +1,13 @@
+<% items.each do |item| %>
+  <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-3 item-image">
+          <img src=<%= item.image.url %>>
+        </div>
+        <div class="col-md-9 item-name">
+          <%= link_to item.name, item_path(item.id) %>
+        </div>
+      </div>
+      <p class="text-muted">投稿レビュー数 (<%= item.reviews.all.count %>)</p>
+  </li>
+<% end %>
