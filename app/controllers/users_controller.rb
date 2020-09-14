@@ -6,6 +6,12 @@ class UsersController < ApplicationController
     @reviews = @user.reviews.paginate(page: params[:page])
   end
 
+  def index
+    @search_word = params[:q][:name_cont] if params[:q]
+    @q = User.all.ransack(params[:q])
+    @users = @q.result(distinct: true).page(params[:page])
+  end
+
   def following
     @title = "フォロー"
     @user  = User.find(params[:id])
