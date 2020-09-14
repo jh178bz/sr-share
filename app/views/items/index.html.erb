@@ -6,7 +6,7 @@
     <h1 class="h3">登録タイヤ一覧</h1>
   <% end %>
   <div class="item">
-    <%= render 'search' if user_signed_in? %>
+    <%= render 'shared/search' if user_signed_in? %>
     <ul class="list-group">
       <% @items.each do |item| %>
         <li class="list-group-item">
