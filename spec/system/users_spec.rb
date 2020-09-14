@@ -72,4 +72,31 @@ RSpec.describe "Users", type: :system do
       end
     end
   end
+
+  describe "user index page" do
+    let!(:user) { create(:user) }
+    let!(:other_user) { create(:user, name: "テスト花子", email: "hanako@example.com") }
+    let!(:other_user2) { create(:user, name: "テスト太郎", email: "taro@example.com") }
+
+    before do
+      sign_in user
+      visit users_path
+    end
+
+    context "seach function" do
+      it "is displayed search form" do
+        expect(page).to have_css '.form-group'
+        expect(page).to have_button '検索'
+      end
+
+      it "is displayed users including seach content" do
+        expect(page).to have_content other_user.name
+        expect(page).to have_content other_user2.name
+        fill_in 'q[name_cont]', with: '花子'
+        click_button '検索'
+        expect(page).to have_content other_user.name
+        expect(page).not_to have_content other_user2.name
+      end
+    end
+  end
 end
