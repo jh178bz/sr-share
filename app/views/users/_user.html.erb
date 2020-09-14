@@ -8,7 +8,6 @@
         <%= link_to user.name, user %>さん
       </div>
     </div>
-    <%#= user.review.count %>
-    投稿レビュー数 200件
+    <p>投稿レビュー数 <%= user.reviews.count %>件</p>
   </div>
 </li>
