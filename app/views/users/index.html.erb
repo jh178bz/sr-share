@@ -1,0 +1,15 @@
+<% provide(:title, "ユーザー検索") %>
+<div class="container">
+  <% if @search_word.present? %>
+    <h1 class="h3">”<%= @search_word %>”の検索結果：<%= @users.count %>件</h1>
+  <% else %>
+    <h1 class="h3">登録ユーザー: <%= @users.count %>人</h1>
+  <% end %>
+  <div class="users">
+    <%= render 'shared/search' if user_signed_in? %>
+    <ol class="form-group users">
+      <%= render @users %>
+    </ol>
+    <%= will_paginate %>
+  </div>
+</div>

@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   post 'favorites/:item_id/create',   to: 'favorites#create'
   delete 'favorites/:item_id/destroy', to: 'favorites#destroy'
 
-  resources :users, only: :show do
+  resources :users, only: [:show, :index] do
     member do
       get :following, :followers, :favorites
     end

@@ -13,6 +13,7 @@
           <%= link_to notifications_path do %><span>通知</span><% end %></li>
           <li><%= link_to "タイヤ一覧", items_path %></li>
           <li><%= link_to "新着レビュー", reviews_path %></li>
+          <li><%= link_to "ユーザーを検索する", users_path %></li>
           <li><%= link_to "タイヤ登録", new_item_path if current_user.admin? %></li>
         <% else %>
           <li><%= link_to "ログイン・新規登録", new_user_session_path %></li>
