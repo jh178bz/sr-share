@@ -1,0 +1,6 @@
+<% if current_user.passive_notifications == true %>
+  <li class="new_notification">
+<% else %>
+  <li class="no_notification">
+<% end %>
+<%= link_to notifications_path do %><span>通知</span><% end %></li>
