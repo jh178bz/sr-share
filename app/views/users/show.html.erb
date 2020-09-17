@@ -1,13 +1,15 @@
 <% provide(:title, "マイページ") %>
-<div class="row">
-  <%= render 'user_info' %>
-  <div class="col-md-8">
-    <% if @user.reviews.any? %>
-      <h3><%= @user.reviews.count %>件のレビュー</h3>
-      <ol class="reviews">
-        <%= render 'shared/review', reviews: @reviews %>
-      </ol>
-      <%= will_paginate @reviews %>
-    <% end %>
+<div class="container">
+  <div class="row">
+    <%= render 'user_info' %>
+    <div class="col-md-8">
+      <% if @user.reviews.any? %>
+        <h3><%= @user.reviews.count %>件のレビュー</h3>
+        <ol class="reviews">
+          <%= render 'shared/review', reviews: @reviews %>
+        </ol>
+        <%= will_paginate @reviews %>
+      <% end %>
+    </div>
   </div>
 </div>
