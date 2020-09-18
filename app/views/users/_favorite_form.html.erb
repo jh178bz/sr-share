@@ -1,7 +1,7 @@
-<div id="favorite-<%= @item.id %>">
-  <% if !current_user.nil? && current_user.favorite?(@item) %>
-    <%= render 'users/unfavorite' %>
+<div id="favorite-<%= item.id %>">
+  <% if !current_user.nil? && current_user.favorite?(item) %>
+    <%= render 'users/unfavorite', item: item %>
   <% else %>
-    <%= render 'users/favorite' %>
+    <%= render 'users/favorite', item: item %>
   <% end %>
 </div>
