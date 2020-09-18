@@ -63,21 +63,6 @@ p {
 
 
 /* header */
-
-#logo {
-  float: left;
-  margin-right: 10px;
-  font-size: 1.7em;
-  color: white;
-  text-transform: uppercase;
-  letter-spacing: -1px;
-  padding-top: 9px;
-  font-weight: bold;
-  &:hover {
-    color: white;
-    text-decoration: none;
-  }
-}
 header {
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, .2);
 }
@@ -89,23 +74,6 @@ footer {
   padding-top: 5px;
   border-top: 1px solid $gray-medium-light;
   color: $gray-light;
-  a {
-    color: $gray;
-    &:hover {
-      color: $gray-darker;
-    }
-  }
-  small {
-    float: left;
-  }
-  ul {
-    float: right;
-    list-style: none;
-    li {
-      float: left;
-      margin-left: 15px;
-    }
-  }
 }
 
 /* sidebar */
@@ -214,17 +182,20 @@ aside {
   color: grey;
 }
 
-.test-login {
+.test-login, .user-delete {
   margin-top: 10px;
 }
 
 /* reviews */
 
 .reviews {
+  max-width: 800px;
   list-style: none;
+  margin: 0 auto;
   padding: 20px;
   background-color: #fff;
   li {
+    margin: 0 auto;
     padding: 10px 10px;
     border-top: 1px solid gray;
   }
@@ -257,25 +228,41 @@ aside {
     margin-right: 10px;
     margin-bottom: 10px;
   }
+}
 
-  .review-item {
-    border:solid;
-    border-color: #f4f4f4;
-    display: inline-block;
-    border-radius: 15px;
-    padding: 5px;
-    .review-count {
-      padding: 2px;
-      margin-bottom: 0px;
-    }
+/* items */
+.item-title {
+  margin: 5px 0px;
+}
+
+.review-btn {
+  margin: 10px 0px;
+}
+
+.card {
+  margin: 10px 0;
+  max-width: 210px;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 2px solid #f4f4f4;
+  border-radius: 10px;
+
+  .card-header {
+    padding: 10px;
+    height: 210px;
     img {
-      margin: 5px;
-      height: auto;
-      max-width: 25%;
-      float: left;
+      height: 100%;
+      width: 100%;
+      margin: 0 auto;
     }
   }
+  .card-body {
+    height: 110px;
+  }
+
 }
+
 
 /* notifications */
 .notifications {
@@ -295,4 +282,21 @@ aside {
   margin-right: 10px;
   padding: 5px;
   background-color: white;
+}
+
+.jumbotron.jumbotron-extend {
+  width: auto;
+  height: 1000px;
+  background: linear-gradient(rgba(0, 0, 0, .5), rgba(0, 0, 0, .5)), url("top-image.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  .inner-contents {
+    height: 100%;
+    margin: auto;
+    display: table;
+    h1, h2, p {
+      color: white;
+    }
+  }
 }

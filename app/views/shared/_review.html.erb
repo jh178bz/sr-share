@@ -1,7 +1,7 @@
 <% reviews.each do |review| %>
   <li id="review-<%= review.id %>">
     <div class="row">
-      <% if current_page?(reviews_path) %>
+      <% unless current_page?(item_path(review.item.id)) %>
         <div class="col-md-8">
       <% else %>
         <div class="col-md-12">
@@ -14,20 +14,7 @@
           <div class="info">
             <span class="user"><%= link_to review.user.name, review.user %></span>
           </div>
-
-          <!-- 星評価 -->
           <div id="star-rate-<%= review.id %>"><%= review.rate %></div>
-          <script>
-          $('#star-rate-<%= review.id %>').raty({
-            size: 36,
-            starOff:  '<%= asset_path('star-off.png') %>',
-            starOn: '<%= asset_path('star-on.png') %>',
-            starHalf: '<%= asset_path('star-half.png') %>',
-            half: true,
-            readOnly: true,
-            score: <%= review.rate %>
-          });
-          </script>
 
           <div class="content">
             <span class="content"><%= review.content %></span>
@@ -43,17 +30,38 @@
           </div>
         </div>
       </div>
-      <% if current_page?(reviews_path) %>
-        <div class="col-md-4">
-          <div class="review-item">
-            <%= link_to(item_path(review.item.id)) do %>
-              <img src=<%= review.item.image.url %>>
-              <p><%= review.item.name %></p>
-            <% end %>
-            <p class="review-count"><%= review.item.reviews.count %>件のレビュー</p>
+      <% unless current_page?(item_path(review.item.id)) %>
+        <div class="container">
+          <div class="row">
+            <div class="card-deck">
+              <div class="col-md-4">
+                <div class="card">
+                  <div class="card-header">
+                    <img src=<%= review.item.image.url %> class="card-img-top" alt="カードの画像">
+                  </div>
+                  <div class="card-body text-center">
+                    <h5 class="card-title"><%= link_to review.item.name, item_path(review.item.id) %></h5>
+                    <p class="card-text">投稿レビュー数 (<%= review.item.reviews.all.count %>)</p>
+                    <%= render 'users/favorite_form', item: review.item %>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       <% end %>
     </div>
   </li>
+  <!-- 星評価 -->
+  <script>
+  $('#star-rate-<%= review.id %>').raty({
+    size: 36,
+    starOff:  '<%= asset_path('star-off.png') %>',
+    starOn: '<%= asset_path('star-on.png') %>',
+    starHalf: '<%= asset_path('star-half.png') %>',
+    half: true,
+    readOnly: true,
+    score: <%= review.rate %>
+  });
+  </script>
 <% end %>

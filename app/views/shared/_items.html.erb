@@ -1,13 +1,14 @@
 <% items.each do |item| %>
-  <li class="list-group-item">
-      <div class="row">
-        <div class="col-md-3 item-image">
-          <img src=<%= item.image.url %>>
-        </div>
-        <div class="col-md-9 item-name">
-          <%= link_to item.name, item_path(item.id) %>
-        </div>
-      </div>
-      <p class="text-muted">投稿レビュー数 (<%= item.reviews.all.count %>)</p>
-  </li>
+<div class="col-lg-3">
+  <div class="card">
+    <div class="card-header">
+      <img src=<%= item.image.url %> class="card-img-top" alt="カードの画像">
+    </div>
+    <div class="card-body text-center">
+      <h5 class="card-title"><%= link_to item.name, item_path(item.id) %></h5>
+      <p class="card-text">投稿レビュー数 (<%= item.reviews.all.count %>)</p>
+      <%= render 'users/favorite_form', item: item %>
+    </div>
+  </div>
+</div>
 <% end %>

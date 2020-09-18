@@ -6,17 +6,24 @@
         <div class="item-image">
           <img src=<%= @item.image.url %>>
         </div>
-        <%= render 'users/favorite_form' %>
-        <h1><%= @item.name %></h1>
-        <h2>商品説明</h2>
-        <p><%= @item.content %></p>
-        <h1>グリップカテゴリ</h1>
+        <%= render 'users/favorite_form', item: @item %>
+        <div class="item-title">
+          <h1><%= @item.name %></h1>
+        </div>
+        <div class="review-btn">
+          <%= link_to 'レビューする', new_item_review_path(@item.id), class: 'btn btn-warning btn-block' %>
+        </div>
+        <div class="item-content">
+          <p>タイヤ詳細 :<%= @item.content %></p>
+        </div>
         <% @item.categories.each do |categories| %>
-          <p><%= categories.name %></p>
+          <div class="category">
+            <p>グリップカテゴリ :<%= categories.name %></p>
+          </div>
         <% end %>
+
       </section>
-      <%= link_to 'タイヤ削除', @item, method: :delete, date: { confirm: "削除しますか?" }, class: 'btn btn-danger' if current_user.admin? %>
-      <%= link_to 'レビューする', new_item_review_path(@item.id), class: 'btn btn-warning' %>
+      <%= link_to 'タイヤ削除', @item, method: :delete, date: { confirm: "削除しますか?" }, class: 'btn btn-danger btn-block' if current_user.admin? %>
     </aside>
     <div class="col-md-8">
       <% if @item.reviews.any? %>
