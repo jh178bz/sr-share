@@ -5,7 +5,7 @@ class ItemsController < ApplicationController
   def index
     @search_word = params[:q][:name_cont] if params[:q]
     @q = Item.all.ransack(params[:q])
-    @items = @q.result(distinct: true).page(params[:page])
+    @items = @q.result(distinct: true).paginate(page: params[:page], per_page: 8)
   end
 
   def show
