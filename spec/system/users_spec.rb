@@ -17,7 +17,7 @@ RSpec.describe "Users", type: :system do
         fill_in "パスワード(6文字以上)", with: "password"
         fill_in "パスワード(確認用)", with: "password"
         click_on "新規登録"
-        expect(page).to have_current_path(root_path)
+        expect(page).to have_current_path(users_path)
       end
 
       it "user invalid signup" do
