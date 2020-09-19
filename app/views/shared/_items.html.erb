@@ -7,7 +7,7 @@
     <div class="card-body text-center">
       <h5 class="card-title"><%= link_to item.name, item_path(item.id) %></h5>
       <p class="card-text">投稿レビュー数 (<%= item.reviews.all.count %>)</p>
-      <%= render 'users/favorite_form', item: item %>
+      <%= render 'users/favorite_form', item: item if user_signed_in? %>
     </div>
   </div>
 </div>

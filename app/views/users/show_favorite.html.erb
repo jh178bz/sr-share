@@ -1,14 +1,20 @@
 <% provide(:title, @title) %>
 <div class="container">
-  <h1 class="h3"><%= @title %></h1>
   <div class="row">
     <%= render 'user_info' %>
     <div class="col-md-8">
+      <h3><%= @title %></h3>
       <% if @favorites.any? %>
-        <ul class="list-group">
-          <%= render 'user_favorite', favorites: @favorites %>
-        </ul>
-        <%= will_paginate @favorites %>
+        <div class="favorite-item">
+          <div class="container">
+            <div class="row">
+              <div class="card-deck">
+                <%= render 'user_favorite', favorites: @favorites %>
+              </div>
+            </div>
+          </div>
+          <%= will_paginate @favorites %>
+        </div>
       <% end %>
     </div>
   </div>

@@ -9,6 +9,11 @@
           <%= render 'shared/review', reviews: @reviews %>
         </ol>
         <%= will_paginate @reviews %>
+      <% else %>
+        <div class="text-center">
+          <h1>レビューを投稿しよう！！</h1>
+          <%= link_to 'タイヤを選ぶ', items_path, class: 'btn btn-warning btn-lg' %>
+        </div>
       <% end %>
     </div>
   </div>

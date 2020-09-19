@@ -1,14 +1,11 @@
 <% favorites.each do |favorite| %>
-<li class="list-group-item">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-3 item-image">
-        <img src=<%= favorite.item.image.url %>>
-      </div>
-      <div class="col-md-3 item-name">
-        <%= link_to favorite.item.name, item_path(favorite.item) %>
-      </div>
+  <div class="card">
+    <div class="card-header">
+      <img src=<%= favorite.item.image.url %> class="card-img-top" alt="カードの画像">
+    </div>
+    <div class="card-body text-center">
+      <h5 class="card-title"><%= link_to favorite.item.name, item_path(favorite.item) %></h5>
+      <p class="card-text">投稿レビュー数 (<%= favorite.item.reviews.all.count %>)</p>
     </div>
   </div>
-</li>
 <% end %>

@@ -5,9 +5,11 @@
     <div class="col-md-8">
       <h3><%= @title %></h3>
       <% if @users.any? %>
-        <ul class="list-group">
-          <%= render @users %>
-        </ul>
+        <div class="users">
+          <div class="row">
+            <%= render @users %>
+          </div>
+        </div>
         <%= will_paginate %>
       <% end %>
     </div>

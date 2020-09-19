@@ -149,10 +149,8 @@ aside {
   background-color: white;
 }
 
-.list-group-item {
-  margin-top: 10px;
-}
 
+/* users */
 .user-info {
   margin-top: 54px;
   padding: 20px;
@@ -165,6 +163,21 @@ aside {
   padding: 0;
   float: right;
 }
+
+.users{
+  .col-md-4 {
+    max-width: 300px;
+    margin: 5px 20px;
+    padding: 5px;
+    background-color: white;
+    border: 2px solid #f4f4f4;
+    border-radius: 10px;
+    .users-image {
+      margin-left: 5px;
+    }
+  }
+}
+
 
 .container .item {
   margin-top: 60px;
@@ -237,6 +250,15 @@ aside {
 
 .review-btn {
   margin: 10px 0px;
+}
+.favorite-item {
+  .card {
+    float: left;
+    margin-right: 10px;
+  }
+  .row {
+    max-width: 800px;
+  }
 }
 
 .card {

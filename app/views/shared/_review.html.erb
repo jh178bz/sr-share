@@ -22,7 +22,7 @@
             <div class="timestamp">
               <span class="timestamp">
                 投稿 <%= time_ago_in_words(review.created_at) %> 前
-                <% if review.item.present? && current_page?(user_path(current_user.id)) && current_user?(current_user) %>
+                <% if user_signed_in? && current_page?(user_path(current_user.id)) && current_user?(current_user) %>
                   <%= link_to '削除', item_review_path(review.item.id), method: :delete, date: { confirm: "削除しますか?" } %>
                 <% end %>
               </span>
@@ -42,7 +42,7 @@
                   <div class="card-body text-center">
                     <h5 class="card-title"><%= link_to review.item.name, item_path(review.item.id) %></h5>
                     <p class="card-text">投稿レビュー数 (<%= review.item.reviews.all.count %>)</p>
-                    <%= render 'users/favorite_form', item: review.item %>
+                    <%= render 'users/favorite_form', item: review.item if user_signed_in? %>
                   </div>
                 </div>
               </div>

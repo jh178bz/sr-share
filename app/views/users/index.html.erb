@@ -7,9 +7,9 @@
   <% end %>
   <div class="users">
     <%= render 'shared/search' if user_signed_in? %>
-    <ol class="form-group users">
+    <div class="row">
       <%= render @users %>
-    </ol>
+    </div>
     <%= will_paginate %>
   </div>
 </div>

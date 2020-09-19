@@ -1,13 +1,13 @@
-<li class="list-group-item">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-3 users-image">
-        <img src=<%= user.image.url %>>
-      </div>
-      <div class="col-md-3 user-name">
-        <%= link_to user.name, user %>さん
-      </div>
+<div class="col-md-4 col-xs-12">
+  <div class="user text-center">
+    <div class="users-image">
+      <img src=<%= user.image.url %>>
     </div>
-    <p>投稿レビュー数 <%= user.reviews.count %>件</p>
+    <div class="user-name">
+      <%= link_to user.name, user %>さん
+    </div>
+    <div class="review-count">
+      <p>投稿レビュー数 <%= user.reviews.count %>件</p>
+    </div>
   </div>
-</li>
+</div>

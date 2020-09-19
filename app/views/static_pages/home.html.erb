@@ -2,7 +2,31 @@
   <div class="jumbotron jumbotron-extend">
     <div class="inner-contents text-center">
       <h1>もうタイヤ選びで迷わない</h1>
-      <p>ライダーの皆さん、タイヤ選びに困ったことはありませんか？</p>
+      <p>タイヤ選びで困ったことはありませんか？</p>
       <p>レビューを共有して自分に合ったタイヤを見つけよう！</p>
+    </div>
+  </div>
+  <div class="container">
+    <h1 class="h3">登録タイヤ一覧</h1>
+    <div class="item">
+      <div class="container">
+        <div class="row">
+          <div class="card-deck">
+            <%= render 'shared/items', items: @items %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center" style="margin-top: 15px;">
+      <%= link_to '登録タイヤをもっと見る', items_path, class: 'btn btn-warning btn-lg' %>
+    </div>
+    <h1 class="h3">新着レビュー</h1>
+    <div class="review">
+      <div class="reviews">
+        <%= render 'shared/review', reviews: @reviews %>
+      </div>
+    </div>
+    <div class="text-center" style="margin-top: 15px;">
+      <%= link_to 'レビューをもっと見る', reviews_path, class: 'btn btn-warning btn-lg' %>
     </div>
   </div>
