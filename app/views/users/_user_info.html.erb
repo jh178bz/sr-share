@@ -1,7 +1,11 @@
 <aside class="col-md-4">
   <section class="user-info">
     <div class="circle-image">
-      <img src=<%= @user.image.thumb.url %>>
+      <% if @user.image.present? %>
+        <img src=<%= @user.image.thumb.url %>>
+      <% else %>
+        <img src="/default/default_user.png">
+      <% end %>
       <div class="follow"><%= render 'follow_form' %></div>
     </div>
     <div class="user-name">
