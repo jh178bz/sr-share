@@ -8,10 +8,10 @@ jobs:
           POSTGRES_HOST: 127.0.0.1
       - image: circleci/postgres:12.3
         environment:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: password
-          POSTGRES_DB: my_app_test
+          POSTGRES_HOST_AUTH_METHOD: trust
+
     working_directory: ~/my_app
+
     steps:
       - checkout
       - restore_cache:
@@ -19,6 +19,7 @@ jobs:
             - v1-dependencies-{{ checksum "Gemfile.lock" }}
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
+      - run: gem install bundler:2.1.4
       - run: bundle install --jobs=4 --retry=3 --path vendor/bundle
       - save_cache:
           paths:
@@ -38,10 +39,10 @@ jobs:
           BUNDLER_VERSION: 2.1.4
       - image: circleci/postgres:12.3
         environment:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: password
-          POSTGRES_DB: my_app_test
+          POSTGRES_HOST_AUTH_METHOD: trust
+
     working_directory: ~/my_app
+
     steps:
       - checkout
       - restore_cache:
@@ -49,12 +50,12 @@ jobs:
             - v1-dependencies-{{ checksum "Gemfile.lock" }}
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
+      - run: gem install bundler:2.1.4
       - run: bundle install --jobs=4 --retry=3 --path vendor/bundle
       - save_cache:
           paths:
             - ./vendor/bundle
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
-      - run: mv config/database.yml.ci config/database.yml
       - run: bundle exec rails db:create
       - run: bundle exec rails db:schema:load
       # Rspec
