@@ -1,24 +1,45 @@
-# README
+# SR SHARE 概要
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+バイクのタイヤに特化したレビュー共有SNSサービス
+https://street-racing-app.herokuapp.com/
 
-Things you may want to cover:
+#デモアカウント
 
-* Ruby version
+ログインページからテストユーザーとして簡単ログインで閲覧して頂けます。
 
-* System dependencies
+#機能 & 使用技術
 
-* Configuration
+* インフラ(heroku)
+* Linter(RuboCop)
+* CI(CircleCI)
+* テスト(RSpec, factory_bot, capybara)
+* デザイン(Bootstrap)
+* 画像アップロード(AWS S3, carrierwave, rmagick)
+* ページネーション(will_paginate)
+* ログイン機能(devise)
+* 管理者ユーザー機能(タイヤ登録・削除, タイヤカテゴリ登録・削除)
+* 検索機能(ransack, ユーザー, タイヤ, レビュー)
+* フォロー機能(Ajax非同期処理)
+* お気に入り機能(タイヤ, Ajax非同期処理)
+* レビュー機能(画像投稿)
+* モデル関連付によるカテゴリ検索
+* 星評価機能(JQuery Raty)
 
-* Database creation
+#環境
 
-* Database initialization
+* 開発環境(Docker Docker-compose)
+* 言語(Ruby 2.7.1)
+* フレームワーク(Rails 5.2.3)
+* データベース(PostgreSQL)
 
-* How to run the test suite
+#製作背景
 
-* Services (job queues, cache servers, search engines, etc.)
+ライダーにとって命を握っていると言っても過言では無い重要なタイヤ。
+バイクタイヤは車とは違い交換頻度が高く、前後合わせて５万円を越えることも珍しく無い。
+また車検前の交換やスポーツ走行による摩耗での交換など年に数回変える人は多い。
+しかし、昨今、各メーカーから多種多様なタイヤが発売されているが、店頭購入・店頭交換というパターンが多く
+SNSやインターネット上で参考にできるレビューが少ない。自身の周りでも
+購入予定のタイヤを使用したことがある人を探す→レビューを直接聞く→購入判断
+という現代のSNS社会において有り得ない光景を見てきた。
 
-* Deployment instructions
-
-* ...
+そんなバイクを愛し、タイヤを大事にするライダーを当サービスで少しでも救う為に製作しました。
