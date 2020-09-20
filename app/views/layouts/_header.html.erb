@@ -4,7 +4,12 @@
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
-          <%= render 'layouts/notification' %>
+          <% if current_user.passive_notifications == true %>
+            <li class="new_notification">
+          <% else %>
+            <li class="no_notification">
+          <% end %>
+          <%= link_to notifications_path do %><span>通知</span><% end %></li>
           <li><%= link_to "タイヤ一覧", items_path %></li>
           <li><%= link_to "レビュー一覧", reviews_path %></li>
           <li><%= link_to "ユーザーを探す", users_path %></li>

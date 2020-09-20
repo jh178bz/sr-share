@@ -7,7 +7,15 @@
     <div class="card-body text-center">
       <h5 class="card-title"><%= link_to item.name, item_path(item.id) %></h5>
       <p class="card-text">投稿レビュー数 (<%= item.reviews.all.count %>)</p>
-      <%= render 'users/favorite_form', item: item if user_signed_in? %>
+      <% if user_signed_in? %>
+        <div id="favorite-<%= item.id %>">
+          <% if !current_user.nil? && current_user.favorite?(item) %>
+            <%= render 'users/unfavorite', item: item %>
+          <% else %>
+            <%= render 'users/favorite', item: item %>
+          <% end %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
