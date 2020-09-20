@@ -3,11 +3,11 @@
 バイクのタイヤに特化したレビュー共有SNSサービス
 https://street-racing-app.herokuapp.com/
 
-#デモアカウント
+# デモアカウント
 
 ログインページからテストユーザーとして簡単ログインで閲覧して頂けます。
 
-#機能 & 使用技術
+# 機能 & 使用技術
 
 * インフラ(heroku)
 * Linter(RuboCop)
@@ -25,14 +25,14 @@ https://street-racing-app.herokuapp.com/
 * モデル関連付によるカテゴリ検索
 * 星評価機能(JQuery Raty)
 
-#環境
+# 環境
 
 * 開発環境(Docker Docker-compose)
 * 言語(Ruby 2.7.1)
 * フレームワーク(Rails 5.2.3)
 * データベース(PostgreSQL)
 
-#製作背景
+# 製作背景
 
 ライダーにとって命を握っていると言っても過言では無い重要なタイヤ。
 バイクタイヤは車とは違い交換頻度が高く、前後合わせて５万円を越えることも珍しく無い。
