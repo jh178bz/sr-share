@@ -9,6 +9,7 @@ jobs:
       - image: circleci/postgres:12.3
         environment:
           POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: password
           POSTGRES_DB: my_app_test
     working_directory: ~/my_app
     steps:
@@ -34,7 +35,7 @@ jobs:
         environment:
           RAILS_ENV: test
           POSTGRES_HOST: 127.0.0.1
-          BUNDLER_VERSION: 2.1.4  
+          BUNDLER_VERSION: 2.1.4
       - image: circleci/postgres:12.3
         environment:
           POSTGRES_USER: postgres
@@ -53,15 +54,15 @@ jobs:
           paths:
             - ./vendor/bundle
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
-      - run: rails db:create
-      - run: rails db:schema:load
+      - run: bundle exec rails db:create
+      - run: bundle exec rails db:schema:load
       # Rspec
       - run:
           name: Rspec
-          command: rspec
+          command: bundle exec rspec
 
 workflows:
-  version: 2
+  version: 2.1
   rubocop_rspec:
     jobs:
       - rubocop
