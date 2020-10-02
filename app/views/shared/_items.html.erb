@@ -2,7 +2,7 @@
 <div class="col-lg-3">
   <div class="card">
     <div class="card-header">
-      <img src=<%= item.image.url %> class="card-img-top" alt="カードの画像">
+      <img  class="lazyload" data-src=<%= item.image.url %> alt="カードの画像">
     </div>
     <div class="card-body text-center">
       <h5 class="card-title"><%= link_to item.name, item_path(item.id) %></h5>
@@ -20,3 +20,7 @@
   </div>
 </div>
 <% end %>
+
+<script>
+  lazyload();
+</script>
