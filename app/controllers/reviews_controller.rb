@@ -4,7 +4,7 @@ class ReviewsController < ApplicationController
 
   def index
     @search_word = params[:q][:name_cont] if params[:q]
-    @q = Review.all.includes(:item).ransack(params[:q])
+    @q = Review.all.includes(:user).ransack(params[:q])
     @reviews = @q.result(distinct: true).page(params[:page])
   end
 
