@@ -1,7 +1,7 @@
 # SR SHARE 概要
 
-バイクのタイヤに特化したレビュー共有SNSサービス
-https://street-racing-app.herokuapp.com/
+バイクのタイヤに特化したレビュー共有SNSサービス<br>
+https://sr-share.com
 
 # デモアカウント
 
