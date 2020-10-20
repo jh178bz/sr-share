@@ -1,0 +1,22 @@
+<% provide :title, "タイヤメーカー登録" %>
+<div class="container item">
+  <%= form_with(model: @maker, local: true) do |f| %>
+  <div class="form-group">
+    <%= f.label :name, 'メーカー名' %>
+    <%= f.text_field :name, class: "form-control" %>
+    <small class="form-text text-muted"></small>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :id, 'メーカーナンバー' %>
+    <%= f.text_field :id, class: "form-control", placeholder: "#{@makers.count + 1}" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :image, '画像' %>
+    <%= f.file_field :image, class: "form-control-file" %>
+  </div>
+
+  <%= f.submit 'メーカー作成', class: 'btn btn-warning btn-block' %>
+  <% end %>
+</div>

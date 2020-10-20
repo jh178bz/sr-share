@@ -1,0 +1,13 @@
+<% provide :title, "メーカー一覧" %>
+<div class="container">
+  <% @makers.each do |maker| %>
+    <%= link_to maker_path(maker.id) do %>
+      <div class="col-md-3">
+        <div class="maker-image">
+          <img src=<%= maker.image.url %>>
+        </div>
+        <p><%= maker.name %></p>
+      </div>
+    <% end %>
+  <% end %>
+</div>

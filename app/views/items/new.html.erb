@@ -27,9 +27,20 @@
     <% end %>
   </div>
 
+  <div class="form-group">
+    <%= f.label :maker, 'メーカー' %><br>
+    <%= collection_check_boxes(:item, :maker_ids, Maker.all, :id, :name ) do |t| %>
+      <%= t.label do %>
+        <%= t.check_box %>
+        <%= t.text %>
+      <% end %>
+    <% end %>
+  </div>
+
   <%= f.submit 'タイヤ作成', class: 'btn btn-warning btn-block' %>
   <% end %>
 
   <%= link_to "カテゴリー追加はこちら", new_category_path if current_user.admin? %>
+  <%= link_to "メーカー追加はこちら", new_maker_path if current_user.admin? %>
 
 </div>
