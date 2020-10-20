@@ -6,6 +6,7 @@
   <ul class="dropdown-menu">
     <li><%= link_to "タイヤ登録", new_item_path if current_user.admin? %></li>
     <li><%= link_to "カテゴリ登録", new_category_path if current_user.admin? %></li>
+    <li><%= link_to "メーカー登録", new_maker_path if current_user.admin? %></li>
     <li class="divider"></li>
   </ul>
 </li>
