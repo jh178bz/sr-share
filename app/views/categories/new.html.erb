@@ -9,7 +9,7 @@
 
   <div class="form-group">
     <%= f.label :id, 'カテゴリーナンバー' %>
-    <%= f.text_field :id, class: "form-control", placeholder: "#{@categories.count + 1}" %>
+    <%= f.text_field :id, class: "form-control", placeholder: "#{Category.all.count + 1}" %>
   </div>
 
   <div class="form-group">
