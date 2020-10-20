@@ -21,6 +21,9 @@
             <p>グリップカテゴリ :<%= categories.name %></p>
           </div>
         <% end %>
+        <div class="category">
+          <p>メーカー :<%= @item.makers.first.name if @item.makers.first.present? %></p>
+        </div>
 
       </section>
       <%= link_to 'タイヤ削除', @item, method: :delete, date: { confirm: "削除しますか?" }, class: 'btn btn-danger btn-block' if current_user.admin? %>

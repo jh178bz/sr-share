@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_14_120413) do
+ActiveRecord::Schema.define(version: 2020_10_19_074326) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,15 @@ ActiveRecord::Schema.define(version: 2020_09_14_120413) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_items_on_name", unique: true
+  end
+
+  create_table "maker_items", force: :cascade do |t|
+    t.bigint "item_id"
+    t.bigint "maker_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_maker_items_on_item_id"
+    t.index ["maker_id"], name: "index_maker_items_on_maker_id"
   end
 
   create_table "makers", force: :cascade do |t|
@@ -116,6 +125,8 @@ ActiveRecord::Schema.define(version: 2020_09_14_120413) do
   add_foreign_key "category_items", "items"
   add_foreign_key "favorites", "items"
   add_foreign_key "favorites", "users"
+  add_foreign_key "maker_items", "items"
+  add_foreign_key "maker_items", "makers"
   add_foreign_key "reviews", "items"
   add_foreign_key "reviews", "users"
 end

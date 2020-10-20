@@ -306,6 +306,18 @@ aside {
   background-color: white;
 }
 
+.maker-image {
+  width: 200px;
+  height: 200px;
+  background-color: white;
+}
+
+.maker-image img {
+  object-fit: contain;
+  max-width: 200px;
+  height: 200px;
+}
+
 .jumbotron.jumbotron-extend {
   width: auto;
   height: 1000px;

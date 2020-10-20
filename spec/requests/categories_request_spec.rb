@@ -14,10 +14,6 @@ RSpec.describe "Categories", type: :request do
       get new_category_path
       expect(response).to have_http_status(200)
     end
-
-    it "can create tire category" do
-      expect { post categories_path, params: { category: category_params }}.to change(Category, :count).by(1)
-    end
   end
 
   describe "category index page" do
