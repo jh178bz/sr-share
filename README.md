@@ -1,7 +1,8 @@
 # SR SHARE 概要
 
 バイクのタイヤに特化したレビュー共有SNSサービス<br>
-https://sr-share.com
+AWS EC2, RDS      https://sr-share.work<br>
+heroku&cloudflare https://sr-share.com
 
 # デモアカウント
 
@@ -9,7 +10,7 @@ https://sr-share.com
 
 # 機能 & 使用技術
 
-* インフラ(heroku)
+* インフラ(AWS EC2, RDS)
 * Linter(RuboCop)
 * CI(CircleCI)
 * テスト(RSpec, factory_bot, capybara)
